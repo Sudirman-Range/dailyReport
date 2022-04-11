@@ -1,14 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home, Edit, EditIndividual } from "./pages";
+import { Navbar } from "./components/molecules";
 
 function App() {
 	return (
 		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Home />}></Route>
-				<Route path="/edit" element={<Edit />}></Route>
-				<Route path="/edit/:YYYY" element={<EditIndividual />}></Route>
-			</Routes>
+			<div className="flex flex-col bg-indigo-50 h-screen w-screen items-center">
+				<Navbar />
+				<Routes>
+					<Route path="/" element={<Home />}></Route>
+					<Route path="/edit" element={<Edit />}></Route>
+					<Route path="/edit/:date" element={<EditIndividual />}></Route>
+				</Routes>
+			</div>
 		</BrowserRouter>
 	);
 }

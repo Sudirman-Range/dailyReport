@@ -1,5 +1,16 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home, Edit, EditIndividual } from "./pages";
+
 function App() {
-	return <div className="text-3xl font-bold underline">Hello,world!</div>;
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<Home />}></Route>
+				<Route path="/edit" element={<Edit />}></Route>
+				<Route path="/edit/:YYYY" element={<EditIndividual />}></Route>
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;

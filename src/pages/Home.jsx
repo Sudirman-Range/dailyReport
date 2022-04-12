@@ -9,7 +9,7 @@ const Home = () => {
 	return (
 		<div>
 			<ContinuationDailyReportCount />
-			<DailyReportList />
+			<DailyReportList path="dailyReport" />
 		</div>
 	);
 };

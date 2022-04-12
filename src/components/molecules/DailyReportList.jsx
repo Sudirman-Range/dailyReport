@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const DailyReportList = () => {
+const DailyReportList = ({ path }) => {
 	const mockDailyReport = [
 		{
 			id: "2022-04-12",
@@ -53,7 +53,7 @@ const DailyReportList = () => {
 		<div className="flex flex-row flex-wrap justify-center items-center py-8 px-1 w-screen gap-y-6 gap-x-4">
 			{mockDailyReport.map((dailyReport) => {
 				return (
-					<Link key={dailyReport.id} to={`edit/${dailyReport.id}`}>
+					<Link key={dailyReport.id} to={`/${path}/${dailyReport.id}`}>
 						<div className=" rounded-2xl drop-shadow-xl px-4 py-3 bg-indigo-50 min-w-[310px] hover:bg-slate-300">
 							<div className="text-center  text-lg font-medium ">
 								{dailyReport.slashDate}

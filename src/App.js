@@ -5,7 +5,7 @@ import { Navbar } from "./components/molecules";
 function App() {
 	return (
 		<BrowserRouter>
-			<div className="flex flex-col bg-indigo-50 h-screen w-screen items-center">
+			<div className="flex flex-col bg-indigo-50 min-h-screen w-screen items-center">
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />}></Route>

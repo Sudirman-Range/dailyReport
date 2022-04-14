@@ -16,7 +16,7 @@ const EditIndividual = () => {
 		<div>
 			<div className="flex flex-col items-center w-screen">
 				<div className="flex flex-row flex-wrap justify-around  w-11/12 gap-x-10  px-4 py-10">
-					<div className="">
+					<div className="max-w-[438px]">
 						<SimpleMDE value={value} onChange={ChangeMdeEditaValue} />
 					</div>
 

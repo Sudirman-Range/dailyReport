@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { NavButton } from "../atoms";
 
-const Logout = ({ changeIsLogin }) => {
+const LoginButton = ({ changeIsLogin }) => {
 	return (
 		<Link to="/" onClick={changeIsLogin}>
-			<NavButton title="Logout" />
+			<NavButton title="Login" />
 		</Link>
 	);
 };
 
-export default Logout;
+export default LoginButton;

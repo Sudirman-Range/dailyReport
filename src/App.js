@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Edit, EditIndividual, DailyReportList } from "./pages";
+import { Home, Edit, EditIndividual, DailyReportList, Login } from "./pages";
 import { Navbar } from "./components/molecules";
 import { useState } from "react";
 
@@ -28,6 +28,8 @@ function App() {
 					{isLogin && (
 						<Route path="/edit/:date" element={<EditIndividual />}></Route>
 					)}
+
+					<Route path="/login" element={<Login />}></Route>
 
 					<Route path="/dailyReport/:date" element={<DailyReportList />}></Route>
 				</Routes>

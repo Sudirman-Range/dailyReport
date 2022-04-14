@@ -1,7 +1,7 @@
 import React from "react";
 import { NavButton } from "../atoms";
 import { Link } from "react-router-dom";
-import { Logut, Login } from ".";
+import { LogutButton, LoginButton } from ".";
 import { useState } from "react";
 
 const Navbar = ({ isLogin, setIsLogin, changeIsLogin }) => {
@@ -15,10 +15,10 @@ const Navbar = ({ isLogin, setIsLogin, changeIsLogin }) => {
 					<Link to="/edit">
 						<NavButton title="Edit" />
 					</Link>
-					<Logut changeIsLogin={changeIsLogin} />
+					<LogutButton changeIsLogin={changeIsLogin} />
 				</div>
 			) : (
-				<Login changeIsLogin={changeIsLogin} />
+				<LoginButton changeIsLogin={changeIsLogin} />
 			)}
 		</div>
 	);

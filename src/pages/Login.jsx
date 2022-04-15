@@ -1,11 +1,30 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setLogInOutEventFlag }) => {
 	const [appearAlertMessage, setAppearAlertMessage] = useState(false);
 
-	const onChnageLoginButton = () => {
-		setAppearAlertMessage((prev) => !prev);
+	const emailRef = useRef();
+	const passwordRef = useRef();
+
+	const navigate = useNavigate();
+
+	const handleSignIn = () => {
+		signInWithEmailAndPassword(
+			auth,
+			emailRef.current.value,
+			passwordRef.current.value
+		)
+			.then((user) => {
+				setLogInOutEventFlag("login");
+				navigate("/", { replace: true });
+			})
+			.catch((e) => {
+				setAppearAlertMessage(true);
+			});
 	};
 
 	return (
@@ -18,18 +37,20 @@ const Login = () => {
 				)}
 				<div className="flex flex-col justify-around w-full items-center gap-y-20">
 					<input
+						ref={emailRef}
 						className="w-8/12 h-14 border-2 rounded-md text-2xl font-semibold"
 						type="text"
 						placeholder="Email"
 					/>
 					<input
+						ref={passwordRef}
 						className="w-8/12 h-14 border-2 rounded-md text-2xl font-semibold"
 						type="Password"
 						placeholder="Password"
 					/>
 					<button
 						className="w-5/12 h-12 py-1 px-3 bg-indigo-400/80 rounded-xl text-white text-2xl font-semibold"
-						onClick={onChnageLoginButton}
+						onClick={handleSignIn}
 					>
 						{/* authによるlogin処理中にボタンを連続で押せないようにするために処理が終わるまではLogin buttonをdisableにするようにauthの処理に書く */}
 						Login

@@ -1,12 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { NavButton } from "../atoms";
+import { auth } from "../../firebase";
+import { signOut } from "firebase/auth";
 
-const LogoutButton = ({ changeIsLogin }) => {
+const LogoutButton = ({ setLogInOutEventFlag }) => {
+	const navigate = useNavigate();
+
+	const handleSignOut = () => {
+		signOut(auth).then(() => {
+			setLogInOutEventFlag("logout");
+			navigate("/", { replace: true });
+		});
+	};
+
 	return (
-		<Link to="/" onClick={changeIsLogin}>
+		<div onClick={handleSignOut}>
 			<NavButton title="Logout" />
-		</Link>
+		</div>
 	);
 };
 

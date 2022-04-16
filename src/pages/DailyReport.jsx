@@ -4,28 +4,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { LoadingAnimation } from "../components/atoms";
+import { JudgeDateExists } from "../hooks";
 
 const DailyReport = () => {
-	const navigate = useNavigate();
-
 	const { date } = useParams();
-
 	const [loading, setLoading] = useState(true);
-	const [dailyReport, setDailyReport] = useState();
-
-	useEffect(() => {
-		const judgeDateExists = async () => {
-			const docRef = doc(db, "dailyReport", date);
-			const docSnap = await getDoc(docRef);
-			if (docSnap.exists()) {
-				setDailyReport(docSnap.data().text);
-			} else {
-				navigate("/", { replace: true });
-			}
-			setLoading(false);
-		};
-		judgeDateExists();
-	}, []);
+	const { dailyReport } = JudgeDateExists(date, setLoading);
 
 	return (
 		<div className="py-14 px-28 w-screen">

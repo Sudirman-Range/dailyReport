@@ -1,67 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { collection, query, orderBy, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const DailyReportList = ({ path }) => {
-	const mockDailyReport = [
-		{
-			id: "2022-04-12",
-			slashDate: "2022/04/12",
-			text: "テキスト2022/04/12",
-		},
-		{
-			id: "2022-04-11",
-			slashDate: "2022/04/11",
-			text: "テキスト2022/04/11",
-		},
-		{
-			id: "2022-04-10",
-			slashDate: "2022/04/10",
-			text: "テキスト2022/04/10",
-		},
-		{
-			id: "2022-04-09",
-			slashDate: "2022/04/09",
-			text: "テキスト2022/04/09",
-		},
-		{
-			id: "2022-04-08",
-			slashDate: "2022/04/08",
-			text: "テキスト2022/04/08",
-		},
-		{
-			id: "2022-04-07",
-			slashDate: "2022/04/07",
-			text: "テキスト2022/04/07",
-		},
-		{
-			id: "2022-04-06",
-			slashDate: "2022/04/06",
-			text: "テキスト2022/04/06",
-		},
-		{
-			id: "2022-04-05",
-			slashDate: "2022/04/05",
-			text: "テキスト2022/04/05",
-		},
-		{
-			id: "2022-04-04",
-			slashDate: "2022/04/04",
-			text: "テキスト2022/04/04",
-		},
-	];
+	const [dailyReports, setDailyReports] = useState();
+	const [loading, setLoading] = useState(true);
+	useEffect(() => {
+		const getDailyReports = async () => {
+			const q = query(collection(db, "dailyReport"), orderBy("slashDate", "desc"));
+			const docSnap = await getDocs(q);
+			setDailyReports(docSnap.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+		};
+		getDailyReports();
+		setLoading(false);
+	}, []);
+
 	return (
 		<div className="flex flex-row flex-wrap justify-center items-center py-8 px-1 w-screen gap-y-6 gap-x-4">
-			{mockDailyReport.map((dailyReport) => {
-				return (
-					<Link key={dailyReport.id} to={`/${path}/${dailyReport.id}`}>
-						<div className=" rounded-2xl drop-shadow-xl px-4 py-3 bg-indigo-50 min-w-[310px] hover:bg-slate-300">
-							<div className="text-center  text-lg font-medium ">
-								{dailyReport.slashDate}
+			{loading ? (
+				<div className="flex justify-center gap-8">
+					<div className="animate-ping h-5 w-5 bg-blue-600 rounded-full"></div>
+					<div className="animate-ping h-5 w-5 bg-blue-600 rounded-full mx-4"></div>
+					<div className="animate-ping h-5 w-5 bg-blue-600 rounded-full"></div>
+				</div>
+			) : (
+				dailyReports?.map((dailyReport) => {
+					return (
+						<Link key={dailyReport.id} to={`/${path}/${dailyReport.id}`}>
+							<div className=" rounded-2xl drop-shadow-xl px-4 py-3 bg-indigo-50 min-w-[310px] hover:bg-slate-300">
+								<div className="text-center  text-lg font-medium ">
+									{dailyReport.slashDate}
+								</div>
 							</div>
-						</div>
-					</Link>
-				);
-			})}
+						</Link>
+					);
+				})
+			)}
 		</div>
 	);
 };

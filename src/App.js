@@ -1,5 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Edit, EditIndividual, DailyReportList, Login } from "./pages";
+import {
+	Home,
+	Edit,
+	EditIndividual,
+	DailyReportList,
+	Login,
+	EditToday,
+} from "./pages";
 import { Navbar } from "./components/molecules";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
@@ -40,6 +47,10 @@ function App() {
 
 					{!loading && isAuth && (
 						<Route path="/edit/:date" element={<EditIndividual />}></Route>
+					)}
+
+					{!loading && isAuth && (
+						<Route path="/edit/today" element={<EditToday />}></Route>
 					)}
 
 					{!loading && !isAuth && (

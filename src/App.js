@@ -14,9 +14,10 @@ import { auth } from "./firebase";
 
 function App() {
 	const [logInOutEventFlag, setLogInOutEventFlag] = useState(undefined);
-
 	const [loading, setLoading] = useState(true);
 	const [isAuth, setIsAuth] = useState(false);
+
+	const [todayReportExists, setTodayReportExists] = useState(true);
 
 	useEffect(() => {
 		setLoading(true);
@@ -43,14 +44,27 @@ function App() {
 				/>
 				<Routes>
 					<Route path="/" element={<Home />}></Route>
-					{!loading && isAuth && <Route path="/edit" element={<Edit />}></Route>}
+					{!loading && isAuth && (
+						<Route
+							path="/edit"
+							element={
+								<Edit
+									todayReportExists={todayReportExists}
+									setTodayReportExists={setTodayReportExists}
+								/>
+							}
+						></Route>
+					)}
 
 					{!loading && isAuth && (
 						<Route path="/edit/:date" element={<EditIndividual />}></Route>
 					)}
 
 					{!loading && isAuth && (
-						<Route path="/edit/today" element={<EditToday />}></Route>
+						<Route
+							path="/edit/today"
+							element={<EditToday setTodayReportExists={setTodayReportExists} />}
+						></Route>
 					)}
 
 					{!loading && !isAuth && (

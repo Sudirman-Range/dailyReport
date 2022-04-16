@@ -3,6 +3,7 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { LoadingAnimation } from "../components/atoms";
 
 const DailyReport = () => {
 	const navigate = useNavigate();
@@ -30,11 +31,7 @@ const DailyReport = () => {
 		<div className="py-14 px-28 w-screen">
 			<div className="flex grow p-10 rounded-xl drop-shadow-sm bg-white">
 				{loading ? (
-					<div className="flex justify-center w-full gap-4">
-						<div className="animate-ping h-5 w-5 bg-blue-600 rounded-full"></div>
-						<div className="animate-ping h-5 w-5 bg-blue-600 rounded-full mx-4"></div>
-						<div className="animate-ping h-5 w-5 bg-blue-600 rounded-full"></div>
-					</div>
+					<LoadingAnimation />
 				) : (
 					<article className="prose">
 						<ReactMarkdown>{dailyReport}</ReactMarkdown>

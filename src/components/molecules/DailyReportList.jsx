@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { collection, query, orderBy, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
+import { LoadingAnimation } from "../atoms";
 
 const DailyReportList = ({ path }) => {
 	const [dailyReports, setDailyReports] = useState();
@@ -19,11 +20,7 @@ const DailyReportList = ({ path }) => {
 	return (
 		<div className="flex flex-row flex-wrap justify-center items-center py-8 px-1 w-screen gap-y-6 gap-x-4">
 			{loading ? (
-				<div className="flex justify-center gap-8">
-					<div className="animate-ping h-5 w-5 bg-blue-600 rounded-full"></div>
-					<div className="animate-ping h-5 w-5 bg-blue-600 rounded-full mx-4"></div>
-					<div className="animate-ping h-5 w-5 bg-blue-600 rounded-full"></div>
-				</div>
+				<LoadingAnimation />
 			) : (
 				dailyReports?.map((dailyReport) => {
 					return (

@@ -8,12 +8,15 @@ const JudgeDateExists = (date, setLoading) => {
 
 	const [dailyReport, setDailyReport] = useState();
 
+	const [slashDate, setSlashDate] = useState();
+
 	useEffect(() => {
 		const judgeDateExists = async () => {
 			const docRef = doc(db, "dailyReport", date);
 			const docSnap = await getDoc(docRef);
 			if (docSnap.exists()) {
 				setDailyReport(docSnap.data().text);
+				setSlashDate(docSnap.data().slashDate);
 			} else {
 				navigate("/", { replace: true });
 			}
@@ -21,7 +24,7 @@ const JudgeDateExists = (date, setLoading) => {
 		};
 		judgeDateExists();
 	}, []);
-	return { dailyReport };
+	return { dailyReport, setDailyReport, slashDate };
 };
 
 export default JudgeDateExists;

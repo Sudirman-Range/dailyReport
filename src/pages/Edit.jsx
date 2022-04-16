@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { GetTodayYYYYMMDD } from "../utils/function";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { LoadingAnimation } from "../components/atoms";
+import { LoadingAnimation, OrdinaryButton } from "../components/atoms";
 
 const Edit = ({ todayReportExists, setTodayReportExists }) => {
 	const [loading, setLoading] = useState(true);
@@ -32,11 +32,11 @@ const Edit = ({ todayReportExists, setTodayReportExists }) => {
 				</div>
 			) : (
 				!todayReportExists && (
-					<Link to="/edit/today">
-						<div className="m-10 p-5 bg-indigo-400/80 hover:bg-indigo-600 rounded-2xl drop-shadow-lg text-white font-bold text-2xl">
-							今日の日報を書く
-						</div>
-					</Link>
+					<div className="m-10">
+						<Link to="/edit/today">
+							<OrdinaryButton text="今日の日報を書く" />
+						</Link>
+					</div>
 				)
 			)}
 			<div>

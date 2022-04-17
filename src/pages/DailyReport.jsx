@@ -12,7 +12,7 @@ const DailyReport = () => {
 	const { dailyReport } = JudgeDateExists(date, setLoading);
 
 	return (
-		<div className="py-14 px-28 w-screen">
+		<div className="py-14 md:px-28 px-5 w-screen">
 			<div className="flex grow p-10 rounded-xl drop-shadow-sm bg-white">
 				{loading ? (
 					<LoadingAnimation />

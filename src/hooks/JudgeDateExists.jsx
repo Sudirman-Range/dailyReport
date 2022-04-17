@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const JudgeDateExists = (date, setLoading) => {
 	const navigate = useNavigate();
 
-	const [dailyReport, setDailyReport] = useState();
+	const [dailyReport, setDailyReport] = useState("");
 
 	const [slashDate, setSlashDate] = useState();
 

@@ -60,7 +60,7 @@ function App() {
 						<Route path="/edit/:date" element={<EditIndividual />}></Route>
 					)}
 
-					{!loading && isAuth && (
+					{!loading && isAuth && !todayReportExists && (
 						<Route
 							path="/edit/today"
 							element={<EditToday setTodayReportExists={setTodayReportExists} />}

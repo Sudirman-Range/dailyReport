@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { LoadingAnimation } from "../atoms";
 
+import DisplayTuna from "./DisplayTuna";
+
 import { GetTodayYYYYMMDD, GetYesterdayYYYYMMDD } from "../../utils/function";
 
 import { db } from "../../firebase";
@@ -16,7 +18,7 @@ const ContinuationDailyReportCount = () => {
 
 	const [slashFirstDay, setSlashFirstDay] = useState("");
 	const [slashEndDay, setSlashEndDay] = useState("");
-	const [continuationCount, setContinuationCount] = useState();
+	const [continuationCount, setContinuationCount] = useState(0);
 
 	useEffect(() => {
 		setLoading(true);
@@ -39,7 +41,6 @@ const ContinuationDailyReportCount = () => {
 			} else {
 				setContinuationDaysDocIsValid(false);
 				console.log("日報が連続して登録されていません");
-				setContinuationCount(0);
 				setLoading(false);
 			}
 		};
@@ -52,7 +53,7 @@ const ContinuationDailyReportCount = () => {
 					<LoadingAnimation />
 				</div>
 			) : (
-				<div className="flex flex-row flex-wrap justify-around items-center gap-y-3">
+				<div className="flex flex-row flex-wrap justify-center items-center gap-y-3 gap-x-4">
 					<div className="h-[60vh] flex flex-col justify-center items-center min-w-[310px] gap-y-2">
 						<div className="text-lg text-4xl  font-bold text-indigo-400/80">
 							継続日数
@@ -69,7 +70,7 @@ const ContinuationDailyReportCount = () => {
 							<div>{`${slashFirstDay} ~ ${slashEndDay}`}</div>
 						)}
 					</div>
-					<div>手書きでマグロの絵を書く</div>
+					<DisplayTuna continuationCount={continuationCount} />
 				</div>
 			)}
 		</div>

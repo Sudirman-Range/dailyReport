@@ -5,7 +5,6 @@ import ReactMarkdown from "react-markdown";
 import { OrdinaryButton } from "../atoms";
 
 const EditScreen = ({ dailyReport, setDailyReport, SubmitDailyReport }) => {
-	console.log("dailyReport", dailyReport);
 	const ChangeMdeValue = (value) => {
 		setDailyReport(value);
 	};

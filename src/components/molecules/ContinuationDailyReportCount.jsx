@@ -33,14 +33,12 @@ const ContinuationDailyReportCount = () => {
 				const continuationDaysSnap = await getDoc(
 					doc(db, "dailyReportContinuationDays", "continuationDays")
 				);
-				console.log("continuationDaysSnap:", continuationDaysSnap.data());
 				setSlashFirstDay(continuationDaysSnap.data().slashFirstDay);
 				setSlashEndDay(continuationDaysSnap.data().slashEndDay);
 				setContinuationCount(continuationDaysSnap.data().count);
 				setLoading(false);
 			} else {
 				setContinuationDaysDocIsValid(false);
-				console.log("日報が連続して登録されていません");
 				setLoading(false);
 			}
 		};

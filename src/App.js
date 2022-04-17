@@ -21,9 +21,7 @@ function App() {
 
 	useEffect(() => {
 		setLoading(true);
-		console.log("app.jsのuseEffectが走ってるよ〜");
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
-			console.log("onauthStateChangedが走ってるよ..");
 			if (user) {
 				setIsAuth(true);
 			} else {

@@ -12,7 +12,6 @@ const Edit = ({ todayReportExists, setTodayReportExists }) => {
 		const getTodayReportExists = async () => {
 			setLoading(true);
 			const { hyphenYYYYMMDD } = GetTodayYYYYMMDD();
-			console.log(hyphenYYYYMMDD);
 			const docRef = doc(db, "dailyReport", hyphenYYYYMMDD);
 			const docSnap = await getDoc(docRef);
 			if (docSnap.exists()) {

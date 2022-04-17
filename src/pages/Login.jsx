@@ -52,7 +52,6 @@ const Login = ({ setLogInOutEventFlag }) => {
 						className="w-5/12 h-12 py-1 px-3 bg-indigo-400/80 rounded-xl text-white text-2xl font-semibold"
 						onClick={handleSignIn}
 					>
-						{/* authによるlogin処理中にボタンを連続で押せないようにするために処理が終わるまではLogin buttonをdisableにするようにauthの処理に書く */}
 						Login
 					</button>
 				</div>
